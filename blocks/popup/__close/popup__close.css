@@ -1,0 +1,9 @@
+.popup__close {
+  border-style: none;
+}
+
+@media screen and (max-width: 520px) {
+  .popup__close {
+    width: 20px;
+  }
+}
