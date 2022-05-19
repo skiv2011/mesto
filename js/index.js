@@ -7,24 +7,26 @@ let formElement = document.querySelector('.popup__form');
 let nameInput = document.querySelector('.popup__destription_type_name');
 let jobInput = document.querySelector('.popup__destription_type_job');
 
+/* Функция открытия попапа */
 function togglePopup() {
-    if (popup.classList.contains('popup_opened')) {
-        popup.classList.toggle('popup_opened');
-    } else {
-        popup.classList.toggle('popup_opened');
-        nameInput.value = nameAvtor.textContent;
-        jobInput.value = postAvtor.textContent;
-    };
+    popup.classList.toggle('popup_opened');
+    nameInput.value = nameAvtor.textContent;
+    jobInput.value = postAvtor.textContent;
 };
 
-openButton.addEventListener('click', togglePopup);
-closeButton.addEventListener('click', togglePopup);
+/* Функция закрывающая попап */
+function closePopup() {
+    popup.classList.remove('popup_opened')
+};
 
+/* Функция обработчик "отправки" формы */
 function formSubmitHandler(evt) {
-    evt.preventDefault();
+    evt.preventDefault(); /*строка отменяет стандартную отправку формы*/
     nameAvtor.textContent = nameInput.value;
     postAvtor.textContent = jobInput.value;
     togglePopup();
 };
 
-formElement.addEventListener('submit', formSubmitHandler);
+openButton.addEventListener('click', togglePopup); /* слушатель кнопки открытия попап */
+closeButton.addEventListener('click', togglePopup); /* слушатель кнопки закрытия попап */
+formElement.addEventListener('submit', formSubmitHandler); /* слушатель кнопки "отправки" формы */

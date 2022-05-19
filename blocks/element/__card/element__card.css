@@ -1,5 +1,5 @@
 .element__card {
-  height: 361px;
+  display: grid;
   overflow: hidden;
   background-color: #fff;
   border-radius: 10px;

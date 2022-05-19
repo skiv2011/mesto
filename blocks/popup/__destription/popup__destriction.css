@@ -3,7 +3,7 @@
   padding: 0 0 13px;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
-  font-family: 'Inter';
+  font-family: 'Inter', Arial, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -12,12 +12,17 @@
   outline: none;
 }
 
-.popup__destription:first-child {
-  margin-top: 40px;
+@media screen and (max-width: 520px) {
+  .popup__destription {
+    padding: 0 0 9px;
+  }
 }
 
 @media screen and (max-width: 520px) {
-  .popup__destription {
-    margin: 45px 0 0;
+  .popup__destription:first-child {
+    margin-top: 75px;
   }
 }
+
+
+

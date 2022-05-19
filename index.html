@@ -21,12 +21,11 @@
           <img src="images/avatar.jpg" alt="фото пользователя" class="profile__avatar">
           <div class="profile__info">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
-            <button class="profile__edit-button"><img src="images/Vector.svg" alt="редактирование"
-                class="profile__edit-button-image"></button>
+            <button aria-label="Редактировать" class="profile__edit-button" type="button"></button>
             <p class="profile__subtitle">Исследователь океана</p>
           </div>
         </div>
-        <button class="profile__add-button"><img src="images/Vector2.svg" alt="добавление"></button>
+        <button aria-label="Добавить" class="profile__add-button" type="button"></button>
       </section>
 
       <section class="elements">
@@ -35,68 +34,68 @@
             <img src="images/item1.jpg" alt="Вид песчаного пляжа с верху" class="element__image">
             <div class="element__discription">
               <h2 class="element__subtitle">Пляж Мальдивы</h2>
-              <button class="element__button-like" type="button"></button>
+              <button aria-label="Лайк" class="element__button-like" type="button"></button>
             </div>
           </li>
           <li class="element__card">
             <img src="images/item2.jpg" alt="Горы и песчанный пляж" class="element__image">
             <div class="element__discription">
               <h2 class="element__subtitle">Индийский океан</h2>
-              <button class="element__button-like" type="button"></button>
+              <button aria-label="Лайк" class="element__button-like" type="button"></button>
             </div>
           </li>
           <li class="element__card">
             <img src="images/item3.jpg" alt="Вид пляжа и тропического леса" class="element__image">
             <div class="element__discription">
               <h2 class="element__subtitle">Тропический лес</h2>
-              <button class="element__button-like" type="button"></button>
+              <button aria-label="Лайк" class="element__button-like" type="button"></button>
             </div>
           </li>
           <li class="element__card">
             <img src="images/item4.jpg" alt="Вид бунгало в воде " class="element__image">
             <div class="element__discription">
               <h2 class="element__subtitle">Французская Полинезия</h2>
-              <button class="element__button-like" type="button"></button>
+              <button aria-label="Лайк" class="element__button-like" type="button"></button>
             </div>
           </li>
           <li class="element__card">
             <img src="images/item5.jpg" alt="Вид пляжа с домиками в воде" class="element__image">
             <div class="element__discription">
               <h2 class="element__subtitle">Лазурный берег</h2>
-              <button class="element__button-like" type="button"></button>
+              <button aria-label="Лайк" class="element__button-like" type="button"></button>
             </div>
           </li>
           <li class="element__card">
             <img src="images/item6.jpg" alt="Песчаный пляж" class="element__image">
             <div class="element__discription">
               <h2 class="element__subtitle">Доминиканская республика</h2>
-              <button class="element__button-like" type="button"></button>
+              <button aria-label="Лайк" class="element__button-like" type="button"></button>
             </div>
           </li>
         </ul>
       </section>
-
-      <footer class="footer">
-        <p class="footer__copyright">&copy; 2020 Mesto Russia Жуковский Павел</p>
-      </footer>
     </main>
+
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2020 Mesto Russia Жуковский Павел</p>
+    </footer>
   </div>
 
-  <section class="popup">
+  <div class="popup">
     <div class="popup__container">
-      <button class="popup__close-button">
-        <img src="images/Close-Icon.svg" alt="закрытие" class="popup__close">
-      </button>
+      <h2 class="popup__title">Редактировать профиль</h2>
       <form class="popup__form" name="profile">
-        <h2 class="popup__title">Редактировать профиль</h2>
-        <input type="text" class="popup__destription popup__destription_type_name" name="name" placeholder="имя" value
-          required>
-        <input type="text" class="popup__destription popup__destription_type_job" name="job" placeholder="о себе" value
-          required>
-        <button aria-label="Сохранить" type="submit" class="popup__submit-button">Сохранить</button>
+        <fieldset class="popup__field">
+          <input type="text" class="popup__destription popup__destription_type_name" name="name" placeholder="имя" value
+            required>
+          <input type="text" class="popup__destription popup__destription_type_job" name="job" placeholder="о себе"
+            value required>
+          <button aria-label="Сохранить" type="submit" class="popup__submit-button">Сохранить</button>
+        </fieldset>
       </form>
+      <button aria-label="Закрыть" class="popup__close-button" type="button"></button>
     </div>
-  </section>
+  </div>
   <script src="js/index.js"></script>
 </body>
 
