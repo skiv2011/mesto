@@ -27,9 +27,9 @@
 @import url(../blocks/popup/__form/popup__form.css);
 @import url(../blocks/popup/__field/popup__field.css);
 @import url(../blocks/popup/__title/popup__title.css);
-@import url(../blocks/popup/__destription/popup__destriction.css);
-@import url(../blocks/popup/__destription/_type/popup__description_type_name.css);
-@import url(../blocks/popup/__destription/_type/popup__description_type_job.css);
+@import url(../blocks/popup/__decription/popup__decription.css);
+@import url(../blocks/popup/__decription/_type/popup__decription_type_name.css);
+@import url(../blocks/popup/__decription/_type/popup__decription_type_job.css);
 @import url(../blocks/popup/__submit-button/popup__submit-button.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
 
