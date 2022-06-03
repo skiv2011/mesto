@@ -23,6 +23,7 @@ const formElementAdd = popupAdd.querySelector('.popup__form-add');
 const cardsTemplate = document.querySelector('.cards').content;/*получаем содержимое template*/
 const elementContainer = document.querySelector('.element') /*сюда закидываем контент*/
 
+
 function createCard(name, link) {
   const elementItem = cardsTemplate.cloneNode(true);
   const elementTitle = elementItem.querySelector('.element__subtitle');
@@ -34,10 +35,11 @@ function createCard(name, link) {
   elementItem.querySelector('.element__button-like').addEventListener('click', likeButton);/*слушатель кнопки "лайк" */
   elementItem.querySelector('.element__button-delete').addEventListener('click', deleteButton);/*слушатель кнопки "удалить" */
   elementImage.addEventListener('click', function (evt) { /*функция увеличения картинки(zoom)*/
-    popupPhoto.src = evt.target.src;
-    popupImageTitle.textContent = elementTitle.textContent;
-    openPopup(popupImg);
-  });
+  popupPhoto.src = evt.target.src;
+  popupPhoto.alt = evt.target.alt;
+  popupImageTitle.textContent = elementTitle.textContent;
+  openPopup(popupImg);
+});
   return elementItem;
 };
 
@@ -83,8 +85,8 @@ function openEditPopup() {
 
 /*Функция открытия попапа добавления карточки*/
 function openAddPopup() {
-  inputTitle.value = "";
-  inputLink.value = "";
+  inputTitle.value;
+  inputLink.value;
   openPopup(popupAdd);
 };
 
@@ -101,6 +103,7 @@ function formSubmitHandler(evt) {
 function formSubmitCard(evt) {
   evt.preventDefault();
   const newCard = createCard(inputTitle.value, inputLink.value);
+  evt.target.reset();
   renderCard(newCard);
   closePopup(popupAdd);
 };
