@@ -24,14 +24,14 @@ const cardsTemplate = document.querySelector('.cards').content;/*получае�
 const elementContainer = document.querySelector('.element') /*сюда закидываем контент*/
 
 
-function createCard(name, link) {
+function createCard(cardData) {
   const elementItem = cardsTemplate.cloneNode(true);
   const elementTitle = elementItem.querySelector('.element__subtitle');
   const elementLink = elementItem.querySelector('.element__image');
   const elementImage = elementItem.querySelector('.element__image');
-  elementLink.src = link;
-  elementImage.alt = name;
-  elementTitle.textContent = name;
+  elementLink.src = cardData.link;
+  elementImage.alt = cardData.name;
+  elementTitle.textContent = cardData.name;
   elementItem.querySelector('.element__button-like').addEventListener('click', likeButton);/*слушатель кнопки "лайк" */
   elementItem.querySelector('.element__button-delete').addEventListener('click', deleteButton);/*слушатель кнопки "удалить" */
   elementImage.addEventListener('click', function (evt) { /*функция увеличения картинки(zoom)*/
@@ -45,7 +45,7 @@ function createCard(name, link) {
 
 function renderList(data) {
   data.forEach(function (item) {
-    const newCard = createCard(item.name, item.link);
+    const newCard = createCard(item);
     renderCard(newCard);
   });
 };
@@ -102,7 +102,8 @@ function formSubmitHandler(evt) {
 /*функция добавления карточки*/
 function formSubmitCard(evt) {
   evt.preventDefault();
-  const newCard = createCard(inputTitle.value, inputLink.value);
+  const cardData = {name: inputTitle.value, link: inputLink.value};
+  const newCard = createCard(cardData );
   evt.target.reset();
   renderCard(newCard);
   closePopup(popupAdd);
