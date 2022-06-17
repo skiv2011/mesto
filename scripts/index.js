@@ -24,17 +24,15 @@ const formElementAdd = popupAdd.querySelector('.popup__form-add');
 const cardsTemplate = document.querySelector('.cards').content;/* получаем содержимое template */
 const elementContainer = document.querySelector('.element') /* сюда закидываем контент */
 
-
 function createCard(cardData) {
   const elementItem = cardsTemplate.cloneNode(true);
   const elementTitle = elementItem.querySelector('.element__subtitle');
-  const elementLink = elementItem.querySelector('.element__image');
   const elementImage = elementItem.querySelector('.element__image');
-  elementLink.src = cardData.link;
+  elementImage.src = cardData.link;
   elementImage.alt = cardData.name;
   elementTitle.textContent = cardData.name;
-  elementItem.querySelector('.element__button-like').addEventListener('click', likeButton);/*слушатель кнопки "лайк" */
-  elementItem.querySelector('.element__button-delete').addEventListener('click', deleteButton);/*слушатель кнопки "удалить" */
+  elementItem.querySelector('.element__button-like').addEventListener('click', toggleLike);/*слушатель кнопки "лайк" */
+  elementItem.querySelector('.element__button-delete').addEventListener('click', deleteCard);/*слушатель кнопки "удалить" */
   elementImage.addEventListener('click', function (evt) { /*функция увеличения картинки(zoom)*/
     popupPhoto.src = evt.target.src;
     popupPhoto.alt = evt.target.alt;
@@ -51,14 +49,14 @@ function renderList(data) {
   });
 };
 
-function likeButton(evt) {
-  const likeButton = evt.target;
-  likeButton.classList.toggle('element__button-like_active'); /* функция кнопки лайк */
+function toggleLike(evt) {
+  const toggleLike = evt.target;
+  toggleLike.classList.toggle('element__button-like_active'); /* функция кнопки лайк */
 };
 
-function deleteButton(evt) {
-  const deleteButton = evt.target.closest('.element__card'); /* функция кнопки удалить карточку */
-  deleteButton.remove();
+function deleteCard(evt) {
+  const deleteCard = evt.target.closest('.element__card'); /* функция кнопки удалить карточку */
+  deleteCard.remove();
 };
 
 function renderCard(elementItem) {
@@ -76,13 +74,11 @@ function openEditPopup() {
 
 /* Функция открытия попапа добавления карточки */
 function openAddPopup() {
-  inputTitle.value;
-  inputLink.value;
   openPopup(popupAdd);
 };
 
 /* Функция обработчик "отправки" формы */
-function formSubmitHandler(evt) {
+function handleProfileFormSubmit(evt) {
   evt.preventDefault();                    /* строка отменяет стандартную отправку формы */
   nameAvtor.textContent = nameInput.value;
   postAvtor.textContent = jobInput.value;
@@ -90,7 +86,7 @@ function formSubmitHandler(evt) {
 };
 
 /* Закрытие попапа нажатием "esc" */
-function pressEscapeHandler(evt) {
+function handleEscape(evt) {
   if (evt.key === 'Escape') {
     const popup = document.querySelector('.popup_opened');
     closePopup(popup);
@@ -99,12 +95,12 @@ function pressEscapeHandler(evt) {
 
 /* Закрыть любой попап */
 function closePopup(popup) {
-  document.removeEventListener('keydown', pressEscapeHandler);
+  document.removeEventListener('keydown', handleEscape);
   popup.classList.remove('popup_opened');
 }
 /* Открыть любой попап */
 function openPopup(popup) {
-  document.addEventListener('keydown', pressEscapeHandler);
+  document.addEventListener('keydown', handleEscape);
   popup.classList.add('popup_opened');
 }
 
@@ -118,7 +114,7 @@ popups.forEach((popup) => {
 });
 
 /* функция добавления карточки */
-function formSubmitCard(evt) {
+function handleCardFormSubmit(evt) {
   evt.preventDefault();
   const cardData = { name: inputTitle.value, link: inputLink.value };
   const newCard = createCard(cardData);
@@ -129,8 +125,5 @@ function formSubmitCard(evt) {
 
 buttonAdd.addEventListener('click', openAddPopup);        /* слушатель открытия попап карточки*/
 buttonEdit.addEventListener('click', openEditPopup);      /*слушатель открытия попап профиля*/
-closeButtonEdit.addEventListener('click', () => { closePopup(popupEdit) });      /* слушатель кнопки закрытия попап добавления профиля*/
-closeButtonAdd.addEventListener('click', () => { closePopup(popupAdd) });        /* слушатель кнопки закрытия попап добавления карточки*/
-closeButtonImg.addEventListener('click', () => { closePopup(popupImg) });        /* слушатель кнопки закрытия попап увеличения картинки*/
-formElementEdit.addEventListener('submit', formSubmitHandler);                   /* слушатель кнопки "сохранить" формы профиля*/
-formElementAdd.addEventListener('submit', formSubmitCard);                       /*слушатель кнопки "создать" формы карточки*/
+formElementEdit.addEventListener('submit', handleProfileFormSubmit); /* слушатель кнопки "сохранить" формы профиля*/
+formElementAdd.addEventListener('submit', handleCardFormSubmit);     /*слушатель кнопки "создать" формы карточки*/
