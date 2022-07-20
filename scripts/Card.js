@@ -1,4 +1,4 @@
-import { popupImg, popupPhoto, popupImageTitle, openPopup } from './utils.js';
+import { popupPhoto, popupImageTitle, openPopup, popupImage } from './utils.js';
 
 export class Card {
   constructor(card, data) {
@@ -17,28 +17,28 @@ export class Card {
   _getTemplate() {
     const contentTemplate = document.querySelector(this._cardsTemplate).content;
     this._card = contentTemplate.querySelector(this._listcontentData).cloneNode(true);
-    this._img = this._card.querySelector(this._sceneryData);
+    this._image = this._card.querySelector(this._sceneryData);
     this._content = this._card.querySelector(this._placeData);
-    this._likeCard = this._card.querySelector(this._likeData);
-    this._deleteCard = this._card.querySelector(this._deleteData);
+    this._buttonLike = this._card.querySelector(this._likeData);
+    this._buttonDelete = this._card.querySelector(this._deleteData);
     return contentTemplate;
   }
 
   /* увеличения картинки(zoom)*/
   _setEvetnListeners() {
-    this._img.addEventListener('click', () => {
+    this._image.addEventListener('click', () => {
       popupPhoto.setAttribute('src', this._link);
       popupPhoto.setAttribute('alt', this._name);
       popupImageTitle.textContent = this._name;
-      openPopup(popupImg);
+      openPopup(popupImage);
     });
     /* обработка лайка */
-    this._likeCard.addEventListener('click', () => {
-      this._likeCard.classList.toggle('element__button-like_active');
+    this._buttonLike.addEventListener('click', () => {
+      this._buttonLike.classList.toggle('element__button-like_active');
     });
 
     /*удалить карточку*/
-    this._deleteCard.addEventListener('click', () => {
+    this._buttonDelete.addEventListener('click', () => {
       this._card.remove();
       this.card = null;
     });
@@ -48,10 +48,9 @@ export class Card {
   generateCard() {
     this._getTemplate();
     this._setEvetnListeners();
-    this._img.src = this._link;
-    this._img.alt = this._name;
+    this._image.src = this._link;
+    this._image.alt = this._name;
     this._content.textContent = this._name;
-
     return this._card;
   }
 }

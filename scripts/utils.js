@@ -1,4 +1,4 @@
-export const popupImg = document.querySelector('.popup_type_image');
+export const popupImage = document.querySelector('.popup_type_image');
 export const popupPhoto = document.querySelector('.popup__photo');
 export const popupImageTitle = document.querySelector('.popup__image-title');
 export const initialCards = [
@@ -37,6 +37,7 @@ export const dataBlock = {
   activeLikeData: '.element__button-like_active',
   deleteData: '.element__button-delete'
 }
+
 export const enableValidation = {
   formSelector: '.popup__form',
   inputSelector: '.popup__decription',

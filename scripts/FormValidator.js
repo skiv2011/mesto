@@ -11,7 +11,7 @@ export class FormValidator {
 
   /*Проверка состояния полей*/
   _toggleButtonState() {
-    if (this._hasInvalidInput(this._inputList)) {
+    if (this._hasInvalidInput()) {
       if (!this._buttonElement.classList.contains(this._inactiveButtonClass)) {
         this._buttonElement.classList.add(this._inactiveButtonClass);
         this._buttonElement.setAttribute('disabled', true);
@@ -22,7 +22,7 @@ export class FormValidator {
     }
   };
 
-  /* Функция проверки input на ошибки */
+  //Проверить, есть ли на форме хотя бы один некорректный ввод
   _hasInvalidInput() {
     return this._inputList.some((input) => {
       return !input.validity.valid;
@@ -71,51 +71,3 @@ export class FormValidator {
     ));
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

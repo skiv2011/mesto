@@ -43,6 +43,7 @@ function handleCardFormSubmit(evt) {
   evt.target.reset();
   renderCard(newCard);
   closePopup(popupAdd);
+  validationCard.disableButton();
 };
 
 function createCard(cardTemplate) {
