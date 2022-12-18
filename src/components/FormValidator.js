@@ -1,4 +1,4 @@
-export class FormValidator {
+export default class FormValidator {
   constructor(setting, formElement) {
     this._formSelector = setting.formSelector;
     this._inputSelector = setting.inputSelector;
@@ -9,7 +9,7 @@ export class FormValidator {
     this._formElement = formElement;
   }
 
-  /*Проверка состояния полей*/
+  //Проверка состояния полей
   _toggleButtonState() {
     if (this._hasInvalidInput()) {
       if (!this._buttonElement.classList.contains(this._inactiveButtonClass)) {
@@ -29,7 +29,7 @@ export class FormValidator {
     })
   };
 
-  /* Функция проверки валидности полей */
+  // Функция проверки валидности полей
   _checkInputValidity(input, error) {
     if (!input.validity.valid) {
       this._showInputError(input, error);
@@ -38,26 +38,26 @@ export class FormValidator {
     }
   }
 
-  /* Функция вызова ошибки */
+  // Функция вызова ошибки
   _showInputError(input, error) {
     input.classList.add(this._inputErrorClass);
     error.classList.add(this._errorClass);
     error.textContent = input.validationMessage;
   }
-  /* Функция которая уберет ошибку */
+  // Функция которая уберет ошибку
   _hideInputError(input, error) {
     input.classList.remove(this._inputErrorClass);
-    error.classList.remove(this._errorClass);
     error.textContent = '';
+    error.classList.remove(this._errorClass);
   }
 
-  /* Блокировка кнопки при открытии popap_add */
+  // Блокировка кнопки при открытии popap_add
   disableButton() {
     this._buttonElement.classList.add(this._inactiveButtonClass);
     this._buttonElement.setAttribute('disabled', true);
   };
 
-  /* Настройка валидации форм */
+  // Настройка валидации форм
   enableValidation() {
     this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
     this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
