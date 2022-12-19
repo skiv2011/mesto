@@ -1,7 +1,5 @@
-import { popupPhoto, popupImageTitle, openPopup, popupImage } from './utils.js';
-
-export class Card {
-  constructor(card, data) {
+export default class Card {
+  constructor(card, data, handleCardClick) {
     this._name = card.name;
     this._link = card.link;
     this._cardsTemplate = data.cardsTemplate;
@@ -11,9 +9,10 @@ export class Card {
     this._likeData = data.likeData;
     this._activeLikeData = data.activeLikeData;
     this._deleteData = data.deleteData;
+    this._handleCardClick = handleCardClick;
   }
 
-  /* Размечаем карточку*/
+  //разметка карточки
   _getTemplate() {
     const contentTemplate = document.querySelector(this._cardsTemplate).content;
     this._card = contentTemplate.querySelector(this._listcontentData).cloneNode(true);
@@ -24,30 +23,32 @@ export class Card {
     return contentTemplate;
   }
 
-  /* увеличения картинки(zoom)*/
-  _setEvetnListeners() {
-    this._image.addEventListener('click', () => {
-      popupPhoto.setAttribute('src', this._link);
-      popupPhoto.setAttribute('alt', this._name);
-      popupImageTitle.textContent = this._name;
-      openPopup(popupImage);
-    });
-    /* обработка лайка */
-    this._buttonLike.addEventListener('click', () => {
-      this._buttonLike.classList.toggle('element__button-like_active');
-    });
-
-    /*удалить карточку*/
-    this._buttonDelete.addEventListener('click', () => {
-      this._card.remove();
-      this.card = null;
-    });
+  _toggleLike() {
+    this._buttonLike.classList.toggle('element__button-like_active');
   }
 
-  /*генерация карточки*/
+  _deleteCard() {
+    this._card.remove();
+    this._card = null;
+  }
+
+  _handleImageClick() {
+    this._handleCardClick({ link: this._link, name: this._name });
+  }
+
+  _setListeners() {
+    //обработка лайка
+    this._buttonLike.addEventListener('click', () => this._toggleLike());
+    //удалить карточку
+    this._buttonDelete.addEventListener('click', () => this._deleteCard());
+    //открытие фото при клике на карточку
+    this._image.addEventListener('click', () => this._handleImageClick());
+  }
+
+  //генерация карточки
   generateCard() {
     this._getTemplate();
-    this._setEvetnListeners();
+    this._setListeners();
     this._image.src = this._link;
     this._image.alt = this._name;
     this._content.textContent = this._name;
