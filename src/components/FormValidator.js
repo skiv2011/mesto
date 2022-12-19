@@ -57,11 +57,8 @@ export default class FormValidator {
     this._buttonElement.setAttribute('disabled', true);
   };
 
-  // Настройка валидации форм
-  enableValidation() {
-    this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
-    this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
-    this._toggleButtonState();
+  //Метод для установки обработчиков
+  _setEventListeners() {
     this._formElement.addEventListener('input', ((evt) => {
       const input = evt.target;
       const error = this._formElement.querySelector(`#${input.id}-error`);
@@ -70,4 +67,22 @@ export default class FormValidator {
     }
     ));
   }
+
+  resetValidation() {
+    this._toggleButtonState();
+    this._inputList.forEach((inputElement) => {
+      const error = this._formElement.querySelector(`#${inputElement.id}-error`);
+      this._hideInputError(inputElement, error)
+    });
+    this.disableButton();
+  }
+
+  // Настройка валидации форм
+  enableValidation() {
+    this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
+    this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
+    this._toggleButtonState();
+    this._setEventListeners();
+  }
 }
+

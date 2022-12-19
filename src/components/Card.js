@@ -23,21 +23,26 @@ export default class Card {
     return contentTemplate;
   }
 
+  _toggleLike() {
+    this._buttonLike.classList.toggle('element__button-like_active');
+  }
+
+  _deleteCard() {
+    this._card.remove();
+    this._card = null;
+  }
+
+  _handleImageClick() {
+    this._handleCardClick({ link: this._link, name: this._name });
+  }
+
   _setListeners() {
     //обработка лайка
-    this._buttonLike.addEventListener('click', () => {
-      this._buttonLike.classList.toggle('element__button-like_active');
-    });
-
+    this._buttonLike.addEventListener('click', () => this._toggleLike());
     //удалить карточку
-    this._buttonDelete.addEventListener('click', () => {
-      this._card.remove();
-      this.card = null;
-    });
+    this._buttonDelete.addEventListener('click', () => this._deleteCard());
     //открытие фото при клике на карточку
-    this._image.addEventListener('click', () => {
-      this._handleCardClick({ link: this._link, name: this._name });
-    })
+    this._image.addEventListener('click', () => this._handleImageClick());
   }
 
   //генерация карточки

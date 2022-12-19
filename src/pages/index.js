@@ -51,13 +51,16 @@ function imageZoom(data) {
 
 // Функция открытия попапа добавления профиля
 const handleEditProfileButtonClick = () => {
+  validationProfile.resetValidation();
 editProfilePopup.open();
-nameInput.value = nameAvtor.textContent;
-jobInput.value = postAvtor.textContent;
+const info = userInfo.getUserInfo();
+nameInput.value = info.name;
+jobInput.value = info.job;
 };
 
 // Функция открытия попапа "новое место"
 const handleAddCardButtonClick = () =>{
+  validationCard.resetValidation();
   addCardPopup.open();
 }
 
@@ -77,7 +80,6 @@ addCardPopup.close();
 validationCard.disableButton();
 };
 
-
 const editProfilePopup = new PopupWithForm(popupEdit,handleProfileFormSubmit);
 const addCardPopup = new PopupWithForm(popupAdd,handleCardFormSubmit);
 const userInfo = new UserInfo({
@@ -88,7 +90,6 @@ const userInfo = new UserInfo({
 popupZoomPhoto.setEventListeners();
 editProfilePopup.setEventListeners();
 addCardPopup.setEventListeners();
-
 
 buttonEdit.addEventListener('click', handleEditProfileButtonClick);
 buttonAdd.addEventListener('click',handleAddCardButtonClick);
