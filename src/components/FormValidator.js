@@ -57,8 +57,21 @@ export default class FormValidator {
     this._buttonElement.setAttribute('disabled', true);
   };
 
+<<<<<<< HEAD
   //Метод для установки обработчиков
   _setEventListeners() {
+=======
+<<<<<<< HEAD
+  //Метод для установки обработчиков
+  _setEventListeners() {
+=======
+  // Настройка валидации форм
+  enableValidation() {
+    this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
+    this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
+    this._toggleButtonState();
+>>>>>>> 2cbaf3e45d5ca4482a6023ef8998c18555b68ba9
+>>>>>>> b436ba3d9e1873b14fe49d2b1c2c0c7c5e418410
     this._formElement.addEventListener('input', ((evt) => {
       const input = evt.target;
       const error = this._formElement.querySelector(`#${input.id}-error`);
@@ -68,6 +81,10 @@ export default class FormValidator {
     ));
   }
 
+<<<<<<< HEAD
+=======
+  //метод для очистки ошибок и управления кнопкой
+>>>>>>> b436ba3d9e1873b14fe49d2b1c2c0c7c5e418410
   resetValidation() {
     this._toggleButtonState();
     this._inputList.forEach((inputElement) => {
