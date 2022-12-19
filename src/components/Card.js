@@ -23,6 +23,7 @@ export default class Card {
     return contentTemplate;
   }
 
+<<<<<<< HEAD
   _toggleLike() {
     this._buttonLike.classList.toggle('element__button-like_active');
   }
@@ -45,6 +46,25 @@ export default class Card {
     this._image.addEventListener('click', () => this._handleImageClick());
   }
 
+=======
+  _setListeners() {
+    //обработка лайка
+    this._buttonLike.addEventListener('click', () => {
+      this._buttonLike.classList.toggle('element__button-like_active');
+    });
+
+    //удалить карточку
+    this._buttonDelete.addEventListener('click', () => {
+      this._card.remove();
+      this.card = null;
+    });
+    //открытие фото при клике на карточку
+    this._image.addEventListener('click', () => {
+      this._handleCardClick({ link: this._link, name: this._name });
+    })
+  }
+
+>>>>>>> 2cbaf3e45d5ca4482a6023ef8998c18555b68ba9
   //генерация карточки
   generateCard() {
     this._getTemplate();

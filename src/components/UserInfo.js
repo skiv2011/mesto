@@ -10,6 +10,10 @@ export default class UserInfo {
       job: this._userJob.textContent,
     };
     return userInfo;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2cbaf3e45d5ca4482a6023ef8998c18555b68ba9
   }
 
   setUserInfo({ name, job }) {
