@@ -23,10 +23,6 @@ export default class Card {
     return contentTemplate;
   }
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> b436ba3d9e1873b14fe49d2b1c2c0c7c5e418410
   _toggleLike() {
     this._buttonLike.classList.toggle('element__button-like_active');
   }
@@ -40,8 +36,6 @@ export default class Card {
     this._handleCardClick({ link: this._link, name: this._name });
   }
 
-<<<<<<< HEAD
-=======
   _setListeners() {
     //обработка лайка
     this._buttonLike.addEventListener('click', () => this._toggleLike());
@@ -51,18 +45,6 @@ export default class Card {
     this._image.addEventListener('click', () => this._handleImageClick());
   }
 
-=======
->>>>>>> b436ba3d9e1873b14fe49d2b1c2c0c7c5e418410
-  _setListeners() {
-    //обработка лайка
-    this._buttonLike.addEventListener('click', () => this._toggleLike());
-    //удалить карточку
-    this._buttonDelete.addEventListener('click', () => this._deleteCard());
-    //открытие фото при клике на карточку
-    this._image.addEventListener('click', () => this._handleImageClick());
-  }
-
->>>>>>> 2cbaf3e45d5ca4482a6023ef8998c18555b68ba9
   //генерация карточки
   generateCard() {
     this._getTemplate();
