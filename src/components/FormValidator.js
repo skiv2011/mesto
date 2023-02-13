@@ -9,7 +9,6 @@ export default class FormValidator {
     this._formElement = formElement;
   }
 
-  //Проверка состояния полей
   _toggleButtonState() {
     if (this._hasInvalidInput()) {
       if (!this._buttonElement.classList.contains(this._inactiveButtonClass)) {
@@ -22,14 +21,12 @@ export default class FormValidator {
     }
   };
 
-  //Проверить, есть ли на форме хотя бы один некорректный ввод
   _hasInvalidInput() {
     return this._inputList.some((input) => {
       return !input.validity.valid;
     })
   };
 
-  // Функция проверки валидности полей
   _checkInputValidity(input, error) {
     if (!input.validity.valid) {
       this._showInputError(input, error);
@@ -38,26 +35,23 @@ export default class FormValidator {
     }
   }
 
-  // Функция вызова ошибки
   _showInputError(input, error) {
     input.classList.add(this._inputErrorClass);
     error.classList.add(this._errorClass);
     error.textContent = input.validationMessage;
   }
-  // Функция которая уберет ошибку
+
   _hideInputError(input, error) {
     input.classList.remove(this._inputErrorClass);
     error.textContent = '';
     error.classList.remove(this._errorClass);
   }
 
-  // Блокировка кнопки при открытии popap_add
   disableButton() {
     this._buttonElement.classList.add(this._inactiveButtonClass);
     this._buttonElement.setAttribute('disabled', true);
   };
 
-  //Метод для установки обработчиков
   _setEventListeners() {
     this._formElement.addEventListener('input', ((evt) => {
       const input = evt.target;
@@ -77,7 +71,6 @@ export default class FormValidator {
     this.disableButton();
   }
 
-  // Настройка валидации форм
   enableValidation() {
     this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
     this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
