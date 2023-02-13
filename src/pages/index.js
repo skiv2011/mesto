@@ -86,7 +86,13 @@ const userInfo = new UserInfo({
   avatarSelector: '.profile__avatar-img'
 });
 
+function openEditAvatar() {
+  validationAvatar.resetValidation();
+  editAvatarPopup.open();
+}
+
 const editAvatarPopup = new PopupWithForm(popupAvatar, (inputValues) => {
+  editAvatarPopup.renderLoading(true);
   api.editAvatar(inputValues.avatar)
     .then(res => {
       userInfo.setUserInfo({ name: res.name, job: res.about, avatar: res.avatar })
@@ -94,20 +100,20 @@ const editAvatarPopup = new PopupWithForm(popupAvatar, (inputValues) => {
     })
     .catch((err) => {
       console.log(err);
-    })
+    }).finally(() => {
+      editAvatarPopup.renderLoading(false);
+    });
 });
 editAvatarPopup.setEventListeners();
 
-buttonEditAvatar.addEventListener('click', () => {
-  validationAvatar.resetValidation();
-  editAvatarPopup.open();
-});
+buttonEditAvatar.addEventListener('click', openEditAvatar);
 
 const validationAvatar = new FormValidator(enableValidation, formElementAvatar);
 validationAvatar.enableValidation();
 
 // Функция обработчик "отправки" формы
 const handleProfileFormSubmit = (data) => {
+  editProfilePopup.renderLoading(true);
   api.editProfile(data)
     .then((res) => {
       userInfo.setUserInfo({ name: res.name, job: res.about, avatar: res.avatar });
@@ -115,7 +121,9 @@ const handleProfileFormSubmit = (data) => {
     })
     .catch((err) => {
       console.log(err);
-    })
+    }).finally(() => {
+      editProfilePopup.renderLoading(false);
+    });
 }
 
 // Функция открытия попапа добавления профиля
@@ -135,6 +143,7 @@ editProfilePopup.setEventListeners();
 
 // функция добавления карточки
 const handleCardFormSubmit = (formData) => {
+  addCardPopup.renderLoading(true);
   api.addCards(formData)
     .then((formData) => {
       renderCards.addItem(formData);
@@ -143,7 +152,9 @@ const handleCardFormSubmit = (formData) => {
     })
     .catch((err) => {
       console.log(err);
-    })
+    }).finally(() => {
+      addCardPopup.renderLoading(false);
+    });
 };
 const addCardPopup = new PopupWithForm(popupAdd, handleCardFormSubmit);
 const validationCard = new FormValidator(enableValidation, formElementAdd);
